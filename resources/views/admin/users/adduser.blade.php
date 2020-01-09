@@ -13,26 +13,40 @@
        @include('admin.includes.errors')
 
         <div class="card-body">
-        	<form action="{{ route('users.store') }}" method="post" enctype="multipart/form-data">
+        	<form action="{{ ($user->id) ? route('users.update', $user->id ) : route('users.store') }}" method="post" enctype="multipart/form-data">
+
         		{{ csrf_field() }}
 
-        		<div class="from-group">
-        			<label for="Title"> Name </label>
-        			<input type="text" name="name" placeholder="Name" class="form-control">
-        		</div>
-        		<div class="from-group">
-        			<label for="thumbnail"> Email </label>
-        			<input type="email" name="email"  class="form-control">
-        		</div>
-                <div class="from-group">
-                    <label for="password"> password </label>
-                    <input type="password" name="password"  class="form-control">
+                @if($user->id)
+                    @method('PUT')
+                @else
+                    @method('POST')
+                @endif
+
+        		<div class="from-group row">
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+            			<label for="Title"> Name </label>
+            			<input type="text" name="name" placeholder="Name" class="form-control" value="{{ old('name',$user->name)}}">
+                    </div>
+        		
+            		<div class="col-sm-4 col-md-4 col-lg-4">
+            			<label for="thumbnail"> Email </label>
+            			<input type="email" name="email"  class="form-control" value="{{ old('email',$user->email)}}">
+            		</div>
+                    @if($user->id < 1) 
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                        <label for="password"> password </label>
+                        
+                        <input type="password" name="password" class="form-control" value="{{ old('password')}}">
+                    
+                    </div>
+                 @endif
                 </div>
-        		<div class="form-control">
-        			<div class="text-center">
+    			<div class="row text-right mt-2">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
         				<button class="btn btn-success" type="submit"> Save </button>
-        			</div>
-        		</div>
+                    </div>
+    			</div>
         		
         	</form>
         </div>

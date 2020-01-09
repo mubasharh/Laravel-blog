@@ -13,7 +13,7 @@
        @include('admin.includes.errors')
 
         <div class="card-body">
-            <form action="{{ route('settings.update', ['id' => $setting->id]) }}" method="setting" enctype="multipart/form-data">
+            <form action="{{ route('settings.update', ['id' => $setting->id]) }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
 
                 <div class="from-group">

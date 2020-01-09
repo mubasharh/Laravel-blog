@@ -98,11 +98,11 @@
                             <li class="list-group-item">
                                 <a href="{{ route('categories') }}"> Categories </a>
                             </li>
-                            <li class="list-group-item">
+                            {{-- <li class="list-group-item">
                                 <a href="{{ route('tags') }}"> Tags </a>
-                            </li>
+                            </li> --}}
                             <li class="list-group-item">
-                                <a href="{{ route('posts') }}"> All Posts </a>
+                                <a href="{{ route('posts') }}"> All News </a>
                             </li>
                             <li class="list-group-item">
                                 <a href="{{ route('post.trashed') }}"> trashed Posts </a>

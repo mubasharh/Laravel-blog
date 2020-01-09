@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Setting;
 use Illuminate\Http\Request;
+use Session;
+
 
 class SettingController extends Controller
 {
@@ -71,7 +73,7 @@ class SettingController extends Controller
      * @param  \App\Setting  $setting
      * @return \Illuminate\Http\Response
      */
-    public function update($data, $id)
+    public function update(Request $data, $id)
     {
         $this->validate($data, [
             //'title' => 'required|text|max:255',
@@ -88,8 +90,8 @@ class SettingController extends Controller
         $setting->address = $data->address;
 
         $setting->save();
-        Session::flash('success', 'Post Updated Successfully!..');
-        return redirect()->route('posts');
+        Session::flash('success', 'Setting Updated Successfully!..');
+        return redirect()->route('settings');
     }
 
     /**

@@ -72,8 +72,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         //
     }
 
@@ -83,9 +82,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit($id) {
+        $user = User::findorFail($id);
+        //dd($user);
+        return view('admin.users.adduser')->with('user',$user); 
     }
 
     /**
@@ -95,9 +95,18 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $id) {
+        
+       $data = request()->validate([
+            'name' => 'required|string|max:100',
+            'email' => 'required|email'
+        ]);
+       //dd($request);
+        User::find($id)->update($data);
+
+       // $user->save();
+        Session::flash('success','User Update Succcessfully!..');
+         return redirect()->route('users');
     }
 
     /**

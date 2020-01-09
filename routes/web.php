@@ -151,7 +151,18 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth' ], function(){
 		'uses' => 'UsersController@store',
 		'as' => 'users.store'
 	]);
-
+	Route::get('users/edit/{id}', [
+		'uses' => 'UsersController@edit',
+		'as' => 'users.edit'
+	]);
+	Route::put('users/update/{id}', [
+		'uses' => 'UsersController@update',
+		'as' => 'users.update'
+	]);
+	Route::post('users/destroy', [
+		'uses' => 'UsersController@destroy',
+		'as' => 'users.destroy'
+	]);
 	Route::get('users/admin/{id}', [
 		'uses' => 'UsersController@admin',
 		'as' => 'users.admin'
